@@ -14,49 +14,69 @@ working with the [Kamui](https://www.kamui.ai) platform via its MCP server.
 `SKILL.md` is a cross-tool standard, so these skills work in **Claude Code, Codex, and
 Cursor** — only the install method differs.
 
-### Claude Code (recommended)
+### Easiest: Claude Code (no terminal, Windows & macOS)
 
-Add the marketplace and install the plugin:
+If you use **Claude Code**, you don't need a terminal, git, or any developer setup. Just
+type these two lines into the Claude Code chat box and press Enter after each:
 
 ```
 /plugin marketplace add kamui-project/kamui-skills
 /plugin install kamui@kamui-skills
 ```
 
-Then run `/reload-plugins` (or restart Claude Code). Claude Code keeps the skills updated
-when you push new versions. This is the standard method used by the official
-[`anthropics/skills`](https://github.com/anthropics/skills) marketplace — it handles
-install, caching, namespacing, trust, and auto-updates for you.
+Then run `/reload-plugins` (or restart Claude Code). Done — identical on Windows and Mac.
+Claude Code keeps the skills updated when you push new versions. This is the standard
+method used by the official [`anthropics/skills`](https://github.com/anthropics/skills)
+marketplace — it handles install, caching, namespacing, trust, and auto-updates for you.
 
 > The `/plugin` marketplace is **Claude Code only**. Codex and Cursor users use the
-> script below.
+> one-line installer below.
 
-### Codex & Cursor (and Claude Code without the plugin system)
+### Codex & Cursor — one-line installer
 
-Run the bundled installer — it copies the skill folders into the global directory each
-tool reads (`~/.claude/skills` for Claude Code, `~/.agents/skills` for Codex/Cursor):
+These tools install skills by folder placement. Paste **one** line into your terminal; it
+downloads the skills and copies them into the directory each tool reads (no git clone
+needed). Re-run any time to update.
 
-```bash
-git clone https://github.com/kamui-project/kamui-skills.git
-cd kamui-skills && ./install.sh          # installs for all three by default
-```
-
-Target a single tool with `TOOL=`:
+**macOS / Linux** (Terminal):
 
 ```bash
-TOOL=claude ./install.sh                 # ~/.claude/skills
-TOOL=codex  ./install.sh                 # ~/.agents/skills
-TOOL=cursor ./install.sh                 # ~/.agents/skills (global)
-DEST=./.cursor/skills ./install.sh       # Cursor, project-local
+curl -fsSL https://raw.githubusercontent.com/kamui-project/kamui-skills/main/install.sh | bash
 ```
 
-Then: Claude Code `/skills` · Codex `/skills` · Cursor reload workspace. Re-run to update.
+**Windows** (PowerShell):
+
+```powershell
+irm https://raw.githubusercontent.com/kamui-project/kamui-skills/main/install.ps1 | iex
+```
+
+By default both install for **all three tools** (into `~/.claude/skills` and
+`~/.agents/skills`). After installing: Claude Code `/skills` · Codex `/skills` · Cursor
+reload workspace.
+
+Target a single tool, or a project-local Cursor folder:
+
+```bash
+# macOS / Linux
+TOOL=codex ./install.sh                   # ~/.agents/skills
+DEST=./.cursor/skills ./install.sh        # Cursor, project-local
+```
+
+```powershell
+# Windows
+.\install.ps1 -Tool codex                 # %USERPROFILE%\.agents\skills
+.\install.ps1 -Dest .\.cursor\skills      # Cursor, project-local
+```
 
 | Tool | Reads skills from |
 | --- | --- |
 | Claude Code | `~/.claude/skills/` |
 | Codex | `~/.agents/skills/`, `.agents/skills/`, `/etc/codex/skills` |
 | Cursor | `.cursor/skills/`, `~/.agents/skills/`, and `~/.claude/skills/` (compat) |
+
+> **Not an engineer?** The Claude Code route above needs no terminal at all and is the
+> same on Windows and Mac. The one-line installers do require opening a terminal once
+> (Terminal on Mac, PowerShell on Windows) — copy, paste, Enter.
 
 > Maintainers: bump `metadata.version` in
 > [`.claude-plugin/marketplace.json`](.claude-plugin/marketplace.json) when you publish
@@ -72,7 +92,8 @@ kamui-skills/
 │   ├── kamui-mcp-setup/SKILL.md
 │   ├── kamui-deploy-workflows/SKILL.md
 │   └── kamui-troubleshooting/SKILL.md
-├── install.sh               ← optional manual installer
+├── install.sh               ← installer for macOS / Linux (Codex, Cursor)
+├── install.ps1              ← installer for Windows PowerShell (Codex, Cursor)
 ├── LICENSE
 └── README.md
 ```
@@ -88,12 +109,17 @@ Plugin install:
 /plugin uninstall kamui@kamui-skills
 ```
 
-Manual install:
+Script install — delete the skill folders from wherever they were installed
+(`~/.claude/skills` and/or `~/.agents/skills`):
 
 ```bash
-rm -rf ~/.claude/skills/kamui-deploy-workflows \
-       ~/.claude/skills/kamui-mcp-setup \
-       ~/.claude/skills/kamui-troubleshooting
+# macOS / Linux
+rm -rf ~/.claude/skills/kamui-* ~/.agents/skills/kamui-*
+```
+
+```powershell
+# Windows
+Remove-Item "$env:USERPROFILE\.claude\skills\kamui-*","$env:USERPROFILE\.agents\skills\kamui-*" -Recurse -Force
 ```
 
 ## License
