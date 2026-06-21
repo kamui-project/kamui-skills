@@ -1,0 +1,24 @@
+{
+  "name": "kamui-skills",
+  "owner": {
+    "name": "Kamui",
+    "email": "d.asaki@simd.jp"
+  },
+  "metadata": {
+    "description": "Skills for working with the Kamui platform via its MCP server in Claude Code.",
+    "version": "0.1.0"
+  },
+  "plugins": [
+    {
+      "name": "kamui",
+      "description": "Kamui platform skills: MCP setup, deploy workflows for GitHub-backed dynamic/static apps, and deployment/runtime troubleshooting.",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./skills/kamui-mcp-setup",
+        "./skills/kamui-deploy-workflows",
+        "./skills/kamui-troubleshooting"
+      ]
+    }
+  ]
+}
