@@ -34,7 +34,7 @@ param(
 )
 
 $ErrorActionPreference = 'Stop'
-$Skills = @('kamui-deploy-workflows','kamui-mcp-setup','kamui-troubleshooting')
+$Skills = @('kamui-github-setup','kamui-deploy-workflows','kamui-mcp-setup','kamui-troubleshooting')
 
 function Say($m) { Write-Host "› $m" -ForegroundColor Cyan }
 function Err($m) { Write-Host "✗ $m" -ForegroundColor Red }

@@ -5,6 +5,7 @@ working with the [Kamui](https://www.kamui.ai) platform via its MCP server.
 
 | Skill | What it does |
 | --- | --- |
+| `kamui-github-setup` | Get GitHub-ready for KamuiDash with the `gh` CLI — check/install gh, authenticate, create or connect the deploy repo. Drives safe steps proactively; confirms before destructive ones. |
 | `kamui-mcp-setup` | Set up and verify Kamui MCP for AI assistants — PAT safety, client registration, connection tests, auth troubleshooting. |
 | `kamui-deploy-workflows` | Deploy Kamui projects and GitHub-backed dynamic/static apps through MCP — project creation, app settings, commands, env vars, safety checks. |
 | `kamui-troubleshooting` | Diagnose Kamui deployment & runtime issues through MCP — app status, deploy runs, deploy logs, build failures, runtime logs. |
@@ -89,6 +90,7 @@ kamui-skills/
 ├── .claude-plugin/
 │   └── marketplace.json     ← marketplace catalog (the entry point for /plugin)
 ├── skills/
+│   ├── kamui-github-setup/SKILL.md
 │   ├── kamui-mcp-setup/SKILL.md
 │   ├── kamui-deploy-workflows/SKILL.md
 │   └── kamui-troubleshooting/SKILL.md
