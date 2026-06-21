@@ -19,7 +19,7 @@ Cursor** — only the install method differs.
 Add the marketplace and install the plugin:
 
 ```
-/plugin marketplace add YOUR_GH_USER/kamui-skills
+/plugin marketplace add kamui-platform/kamui-skills
 /plugin install kamui@kamui-skills
 ```
 
@@ -37,7 +37,7 @@ Run the bundled installer — it copies the skill folders into the global direct
 tool reads (`~/.claude/skills` for Claude Code, `~/.agents/skills` for Codex/Cursor):
 
 ```bash
-git clone https://github.com/YOUR_GH_USER/kamui-skills.git
+git clone https://github.com/kamui-platform/kamui-skills.git
 cd kamui-skills && ./install.sh          # installs for all three by default
 ```
 
@@ -58,7 +58,7 @@ Then: Claude Code `/skills` · Codex `/skills` · Cursor reload workspace. Re-ru
 | Codex | `~/.agents/skills/`, `.agents/skills/`, `/etc/codex/skills` |
 | Cursor | `.cursor/skills/`, `~/.agents/skills/`, and `~/.claude/skills/` (compat) |
 
-> Replace `YOUR_GH_USER` with the GitHub account/org you push this repo to. Bump
+> Replace `kamui-platform` with the GitHub account/org you push this repo to. Bump
 > `metadata.version` in [`.claude-plugin/marketplace.json`](.claude-plugin/marketplace.json)
 > when you publish updates so Claude Code clients pick them up.
 
