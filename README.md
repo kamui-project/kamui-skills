@@ -11,36 +11,56 @@ working with the [Kamui](https://www.kamui.ai) platform via its MCP server.
 
 ## Install
 
-Inside Claude Code, add the marketplace and install the plugin:
+`SKILL.md` is a cross-tool standard, so these skills work in **Claude Code, Codex, and
+Cursor** — only the install method differs.
+
+### Claude Code (recommended)
+
+Add the marketplace and install the plugin:
 
 ```
 /plugin marketplace add YOUR_GH_USER/kamui-skills
 /plugin install kamui@kamui-skills
 ```
 
-Then run `/reload-plugins` (or restart Claude Code). All three `kamui-*` skills are now
-available. Claude Code keeps them updated when you push new versions.
+Then run `/reload-plugins` (or restart Claude Code). Claude Code keeps the skills updated
+when you push new versions. This is the standard method used by the official
+[`anthropics/skills`](https://github.com/anthropics/skills) marketplace — it handles
+install, caching, namespacing, trust, and auto-updates for you.
 
-> Replace `YOUR_GH_USER` with the GitHub account/org you push this repo to. Also bump
-> `metadata.version` in [`.claude-plugin/marketplace.json`](.claude-plugin/marketplace.json)
-> when you publish updates so clients pick them up.
+> The `/plugin` marketplace is **Claude Code only**. Codex and Cursor users use the
+> script below.
 
-This is the standard distribution method used by the official
-[`anthropics/skills`](https://github.com/anthropics/skills) marketplace and the community
-marketplaces — it handles install, caching, namespacing, trust, and auto-updates for you.
+### Codex & Cursor (and Claude Code without the plugin system)
 
-## Alternative: manual install (no plugin system)
-
-If you'd rather drop the skills straight into `~/.claude/skills/` without the plugin
-manager, run the bundled script:
+Run the bundled installer — it copies the skill folders into the global directory each
+tool reads (`~/.claude/skills` for Claude Code, `~/.agents/skills` for Codex/Cursor):
 
 ```bash
 git clone https://github.com/YOUR_GH_USER/kamui-skills.git
-cd kamui-skills && ./install.sh
+cd kamui-skills && ./install.sh          # installs for all three by default
 ```
 
-It copies the three skill folders into `~/.claude/skills/` (honors `CLAUDE_SKILLS_DIR`).
-Re-run to update. This path skips Claude Code's version/auto-update machinery.
+Target a single tool with `TOOL=`:
+
+```bash
+TOOL=claude ./install.sh                 # ~/.claude/skills
+TOOL=codex  ./install.sh                 # ~/.agents/skills
+TOOL=cursor ./install.sh                 # ~/.agents/skills (global)
+DEST=./.cursor/skills ./install.sh       # Cursor, project-local
+```
+
+Then: Claude Code `/skills` · Codex `/skills` · Cursor reload workspace. Re-run to update.
+
+| Tool | Reads skills from |
+| --- | --- |
+| Claude Code | `~/.claude/skills/` |
+| Codex | `~/.agents/skills/`, `.agents/skills/`, `/etc/codex/skills` |
+| Cursor | `.cursor/skills/`, `~/.agents/skills/`, and `~/.claude/skills/` (compat) |
+
+> Replace `YOUR_GH_USER` with the GitHub account/org you push this repo to. Bump
+> `metadata.version` in [`.claude-plugin/marketplace.json`](.claude-plugin/marketplace.json)
+> when you publish updates so Claude Code clients pick them up.
 
 ## Repository layout
 
