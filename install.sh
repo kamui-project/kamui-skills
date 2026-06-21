@@ -3,7 +3,7 @@
 # Kamui Skills installer — works for Claude Code, Codex, and Cursor.
 #
 # One-line install (reads from the public GitHub repo):
-#   curl -fsSL https://raw.githubusercontent.com/kamui-platform/kamui-skills/main/install.sh | bash
+#   curl -fsSL https://raw.githubusercontent.com/kamui-project/kamui-skills/main/install.sh | bash
 #
 # SKILL.md is a cross-tool standard, so the same skill folders work everywhere;
 # only the install directory differs. This script copies the skills into the
@@ -22,7 +22,7 @@
 set -euo pipefail
 
 # --- config -----------------------------------------------------------------
-REPO="${KAMUI_SKILLS_REPO:-kamui-platform/kamui-skills}"
+REPO="${KAMUI_SKILLS_REPO:-kamui-project/kamui-skills}"
 BRANCH="${KAMUI_SKILLS_BRANCH:-main}"
 TOOL="${TOOL:-all}"
 SKILLS=(kamui-deploy-workflows kamui-mcp-setup kamui-troubleshooting)

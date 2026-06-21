@@ -19,7 +19,7 @@ Cursor** — only the install method differs.
 Add the marketplace and install the plugin:
 
 ```
-/plugin marketplace add kamui-platform/kamui-skills
+/plugin marketplace add kamui-project/kamui-skills
 /plugin install kamui@kamui-skills
 ```
 
@@ -37,7 +37,7 @@ Run the bundled installer — it copies the skill folders into the global direct
 tool reads (`~/.claude/skills` for Claude Code, `~/.agents/skills` for Codex/Cursor):
 
 ```bash
-git clone https://github.com/kamui-platform/kamui-skills.git
+git clone https://github.com/kamui-project/kamui-skills.git
 cd kamui-skills && ./install.sh          # installs for all three by default
 ```
 
