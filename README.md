@@ -58,9 +58,9 @@ Then: Claude Code `/skills` · Codex `/skills` · Cursor reload workspace. Re-ru
 | Codex | `~/.agents/skills/`, `.agents/skills/`, `/etc/codex/skills` |
 | Cursor | `.cursor/skills/`, `~/.agents/skills/`, and `~/.claude/skills/` (compat) |
 
-> Replace `kamui-platform` with the GitHub account/org you push this repo to. Bump
-> `metadata.version` in [`.claude-plugin/marketplace.json`](.claude-plugin/marketplace.json)
-> when you publish updates so Claude Code clients pick them up.
+> Maintainers: bump `metadata.version` in
+> [`.claude-plugin/marketplace.json`](.claude-plugin/marketplace.json) when you publish
+> updates so Claude Code clients pick them up.
 
 ## Repository layout
 
