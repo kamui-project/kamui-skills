@@ -1,7 +1,7 @@
 # Kamui Skills for Claude Code
 
 A [Claude Code](https://claude.com/claude-code) **plugin marketplace** bundling Skills for
-working with the [Kamui](https://www.kamui.ai) platform via its MCP server.
+working with the [KamuiDash](https://kamui-platform.com) platform via its MCP server.
 
 | Skill | What it does |
 | --- | --- |
