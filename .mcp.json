@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "kamuidash": {
+      "type": "http",
+      "url": "https://api.kamui-platform.com/mcp/claude"
+    }
+  }
+}
