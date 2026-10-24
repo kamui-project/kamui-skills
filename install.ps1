@@ -34,7 +34,7 @@ param(
 )
 
 $ErrorActionPreference = 'Stop'
-$Skills = @('kamui-github-setup','kamui-deploy-workflows','kamui-mcp-setup','kamui-troubleshooting')
+$Skills = @('kamui-deploy-workflows','kamui-troubleshooting')
 
 function Say($m) { Write-Host "› $m" -ForegroundColor Cyan }
 function Err($m) { Write-Host "✗ $m" -ForegroundColor Red }
@@ -78,7 +78,7 @@ if ($scriptDir -and (Test-Path (Join-Path $scriptDir 'skills'))) {
     throw
   }
   $found = Get-ChildItem -Path $tmp -Recurse -Directory -Filter 'skills' |
-           Where-Object { Test-Path (Join-Path $_.FullName 'kamui-mcp-setup') } |
+           Where-Object { Test-Path (Join-Path $_.FullName 'kamui-deploy-workflows') } |
            Select-Object -First 1
   if (-not $found) { Err "Could not find a skills\ directory in the downloaded repo."; throw }
   $Src = $found.FullName

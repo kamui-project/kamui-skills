@@ -1,129 +1,65 @@
-# Kamui Skills for Claude Code
+# KamuiDash Skills
 
-A [Claude Code](https://claude.com/claude-code) **plugin marketplace** bundling Skills for
-working with the [KamuiDash](https://kamui-platform.com) platform via its MCP server.
+Evidence-based deployment and troubleshooting workflows for KamuiDash MCP.
 
-| Skill | What it does |
+| Skill | Purpose |
 | --- | --- |
-| `kamui-github-setup` | Get GitHub-ready for KamuiDash with the `gh` CLI — check/install gh, authenticate, create or connect the deploy repo. Drives safe steps proactively; confirms before destructive ones. |
-| `kamui-mcp-setup` | Set up and verify Kamui MCP for AI assistants — PAT safety, client registration, connection tests, auth troubleshooting. |
-| `kamui-deploy-workflows` | Deploy Kamui projects and GitHub-backed dynamic/static apps through MCP — project creation, app settings, commands, env vars, safety checks. |
-| `kamui-troubleshooting` | Diagnose Kamui deployment & runtime issues through MCP — app status, deploy runs, deploy logs, build failures, runtime logs. |
+| `kamui-deploy-workflows` | Inspect available repository evidence, recommend settings for Go, Node.js, Python, Ruby, or static sites, publish/update authorized resources, guide custom-domain DNS setup, and verify the requested result. |
+| `kamui-troubleshooting` | Match incidents to logs and execution results, distinguish established facts from unknown causes, and propose supported repairs. |
 
-## Install
+## Use
 
-`SKILL.md` is a cross-tool standard, so these skills work in **Claude Code, Codex, and
-Cursor** — only the install method differs.
+Connect KamuiDash in your host, then ask for the workflow you need:
 
-### Easiest: Claude Code (no terminal, Windows & macOS)
+- "Publish this repository on KamuiDash. Recommend the commands from its source."
+- "The new deployment failed, but the old version still responds. Check the logs."
+- "Find out why the Rails app failed to start. Do not change anything yet."
+- "Connect this app to my domain and tell me which DNS records to add and how to check them."
 
-If you use **Claude Code**, you don't need a terminal, git, or any developer setup. Just
-type these two lines into the Claude Code chat box and press Enter after each:
+GitHub deployments require the KamuiDash GitHub App to access the selected repository. A host's separate GitHub connection is not a substitute. Hosted use does not require a local CLI.
 
-```
+For domain setup, the workflow explains the records shown by KamuiDash, where to enter them at the DNS provider, and how to check domain verification and HTTPS. KamuiDash MCP does not edit external DNS records.
+
+Skills do not grant permissions or replace the host/server approval rules. Before publishing or changing resources, the workflow explains the target, exposure, applicable cost, and service/data impact. Existing explicit approval for the identical action is reused.
+
+Keep passwords, API keys, tokens, connection strings, and private keys out of chat and tool arguments. Enter application secrets in secure KamuiDash dashboard settings. KamuiDash injects `DATABASE_URL` when a database is attached.
+
+The current KamuiDash MCP does not read repository files, create GitHub repositories, or push code. Repository inspection uses available authorized source readers; if unavailable, only relevant non-secret excerpts are requested. Accepted requests are not proof of a live release.
+
+## Local installation
+
+For the existing Claude Code marketplace:
+
+```text
 /plugin marketplace add kamui-project/kamui-skills
 /plugin install kamui@kamui-skills
 ```
 
-Then run `/reload-plugins` (or restart Claude Code). Done — identical on Windows and Mac.
-Claude Code keeps the skills updated when you push new versions. This is the standard
-method used by the official [`anthropics/skills`](https://github.com/anthropics/skills)
-marketplace — it handles install, caching, namespacing, trust, and auto-updates for you.
+Enable or reload the plugin as your host requires and configure its KamuiDash connection separately. The marketplace retains its existing `kamui` identity.
 
-> The `/plugin` marketplace is **Claude Code only**. Codex and Cursor users use the
-> one-line installer below.
+Other compatible local hosts can install the two skill directories according to their current supported paths. Existing `install.sh` and `install.ps1` copy only these two skills; they are optional local-install helpers, not hosted-plugin prerequisites. Removing an older globally installed setup skill is a separate explicit cleanup; the installer does not silently remove older unrelated folders.
 
-### Codex & Cursor — one-line installer
+Public OpenAI/Claude distribution requires its own current packaging and review process. This repository's Claude Code marketplace is not itself a submitted hosted-plugin release. Updating this repository does not automatically update the skills in an approved public listing.
 
-These tools install skills by folder placement. Paste **one** line into your terminal; it
-downloads the skills and copies them into the directory each tool reads (no git clone
-needed). Re-run any time to update.
+## Layout
 
-**macOS / Linux** (Terminal):
-
-```bash
-curl -fsSL https://raw.githubusercontent.com/kamui-project/kamui-skills/main/install.sh | bash
+```text
+.claude-plugin/marketplace.json
+.claude-plugin/plugin.json
+skills/kamui-deploy-workflows/SKILL.md
+skills/kamui-troubleshooting/SKILL.md
+install.sh
+install.ps1
+LICENSE
 ```
 
-**Windows** (PowerShell):
+The two former setup skills are no longer part of this package. The deployed MCP server and its approved identities/endpoints are maintained separately and are not changed by this package.
 
-```powershell
-irm https://raw.githubusercontent.com/kamui-project/kamui-skills/main/install.ps1 | iex
-```
+## Service
 
-By default both install for **all three tools** (into `~/.claude/skills` and
-`~/.agents/skills`). After installing: Claude Code `/skills` · Codex `/skills` · Cursor
-reload workspace.
-
-Target a single tool, or a project-local Cursor folder:
-
-```bash
-# macOS / Linux
-TOOL=codex ./install.sh                   # ~/.agents/skills
-DEST=./.cursor/skills ./install.sh        # Cursor, project-local
-```
-
-```powershell
-# Windows
-.\install.ps1 -Tool codex                 # %USERPROFILE%\.agents\skills
-.\install.ps1 -Dest .\.cursor\skills      # Cursor, project-local
-```
-
-| Tool | Reads skills from |
-| --- | --- |
-| Claude Code | `~/.claude/skills/` |
-| Codex | `~/.agents/skills/`, `.agents/skills/`, `/etc/codex/skills` |
-| Cursor | `.cursor/skills/`, `~/.agents/skills/`, and `~/.claude/skills/` (compat) |
-
-> **Not an engineer?** The Claude Code route above needs no terminal at all and is the
-> same on Windows and Mac. The one-line installers do require opening a terminal once
-> (Terminal on Mac, PowerShell on Windows) — copy, paste, Enter.
-
-> Maintainers: bump `metadata.version` in
-> [`.claude-plugin/marketplace.json`](.claude-plugin/marketplace.json) when you publish
-> updates so Claude Code clients pick them up.
-
-## Repository layout
-
-```
-kamui-skills/
-├── .claude-plugin/
-│   └── marketplace.json     ← marketplace catalog (the entry point for /plugin)
-├── skills/
-│   ├── kamui-github-setup/SKILL.md
-│   ├── kamui-mcp-setup/SKILL.md
-│   ├── kamui-deploy-workflows/SKILL.md
-│   └── kamui-troubleshooting/SKILL.md
-├── install.sh               ← installer for macOS / Linux (Codex, Cursor)
-├── install.ps1              ← installer for Windows PowerShell (Codex, Cursor)
-├── LICENSE
-└── README.md
-```
-
-Each skill is a folder with a `SKILL.md` (YAML front matter: `name`, `description`) that
-Claude Code loads automatically.
-
-## Uninstall
-
-Plugin install:
-
-```
-/plugin uninstall kamui@kamui-skills
-```
-
-Script install — delete the skill folders from wherever they were installed
-(`~/.claude/skills` and/or `~/.agents/skills`):
-
-```bash
-# macOS / Linux
-rm -rf ~/.claude/skills/kamui-* ~/.agents/skills/kamui-*
-```
-
-```powershell
-# Windows
-Remove-Item "$env:USERPROFILE\.claude\skills\kamui-*","$env:USERPROFILE\.agents\skills\kamui-*" -Recurse -Force
-```
+- [Dashboard](https://dashboard.kamui-platform.com)
+- [Pricing information](https://dashboard.kamui-platform.com/documents/spec-price-overview)
 
 ## License
 
-MIT — see [LICENSE](LICENSE).
+MIT; see `LICENSE`.

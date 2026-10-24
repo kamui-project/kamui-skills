@@ -5,18 +5,16 @@
     "email": "d.asaki@simd.jp"
   },
   "metadata": {
-    "description": "Skills for working with the Kamui platform via its MCP server in Claude Code.",
-    "version": "0.2.0"
+    "description": "Evidence-based first deployment and troubleshooting with KamuiDash MCP.",
+    "version": "0.3.0"
   },
   "plugins": [
     {
       "name": "kamui",
-      "description": "Kamui platform skills: GitHub setup via the gh CLI, MCP setup, deploy workflows for GitHub-backed dynamic/static apps, and deployment/runtime troubleshooting.",
+      "description": "Recommend deployment settings, publish and update apps, guide custom-domain DNS setup, and investigate failures using logs.",
       "source": "./",
       "strict": false,
       "skills": [
-        "./skills/kamui-github-setup",
-        "./skills/kamui-mcp-setup",
         "./skills/kamui-deploy-workflows",
         "./skills/kamui-troubleshooting"
       ]

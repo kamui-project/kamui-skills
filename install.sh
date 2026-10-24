@@ -25,7 +25,7 @@ set -euo pipefail
 REPO="${KAMUI_SKILLS_REPO:-kamui-project/kamui-skills}"
 BRANCH="${KAMUI_SKILLS_BRANCH:-main}"
 TOOL="${TOOL:-all}"
-SKILLS=(kamui-github-setup kamui-deploy-workflows kamui-mcp-setup kamui-troubleshooting)
+SKILLS=(kamui-deploy-workflows kamui-troubleshooting)
 # ----------------------------------------------------------------------------
 
 say() { printf '\033[1;36m›\033[0m %s\n' "$*"; }

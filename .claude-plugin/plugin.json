@@ -1,0 +1,13 @@
+{
+  "name": "kamui",
+  "version": "0.3.0",
+  "description": "Recommend deployment settings, publish and update apps, guide custom-domain DNS setup, and investigate failures using logs.",
+  "author": {
+    "name": "Kamui",
+    "email": "d.asaki@simd.jp"
+  },
+  "skills": [
+    "./skills/kamui-deploy-workflows",
+    "./skills/kamui-troubleshooting"
+  ]
+}
