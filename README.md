@@ -32,6 +32,8 @@ The plugin includes instructions and a connection to the KamuiDash service. Sign
 - [Terms of use](https://dashboard.kamui-platform.com/en/documents/terms-of-use)
 - [Support](https://dashboard.kamui-platform.com/en/inquiry)
 
+When the requested workflow needs it and the user authorizes it, the deployment skill can also use the host's separate GitHub capabilities to inspect source or prepare and push deployment files to the selected repository. That sends the selected source or deployment files to GitHub under the user's existing connection permissions. It can send HTTP requests to the app URL or the user's custom domain to check the requested result. These capabilities depend on what the host provides; the plugin does not install them or grant access to them. Do not include secrets in those files or requests.
+
 ## Source and distribution
 
 The two skill directories are shared source for ChatGPT and Claude. The Claude bundle is declared by `.claude-plugin/plugin.json` and `.mcp.json`. Updating this repository does not automatically update the approved ChatGPT listing; each host uses its own release and review process.

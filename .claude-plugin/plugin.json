@@ -1,7 +1,7 @@
 {
   "name": "kamuidash",
   "displayName": "KamuiDash",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "Deploy apps, configure custom domains, and investigate failures on KamuiDash using repository evidence and logs.",
   "author": {
     "name": "SIMD LLC (KamuiDash)",
