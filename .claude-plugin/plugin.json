@@ -1,10 +1,10 @@
 {
   "name": "kamuidash",
   "displayName": "KamuiDash",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "Deploy apps, configure custom domains, and investigate failures on KamuiDash using repository evidence and logs.",
   "author": {
-    "name": "SIMD LLC",
+    "name": "SIMD LLC (KamuiDash)",
     "email": "d.asaki@simd.jp",
     "url": "https://simd.jp/"
   },
@@ -14,5 +14,6 @@
   "documentationUrl": "https://docs.kamui-platform.com/mcp.html",
   "supportUrl": "https://dashboard.kamui-platform.com/en/inquiry",
   "privacyPolicyUrl": "https://dashboard.kamui-platform.com/en/documents/privacy-policy",
-  "termsOfServiceUrl": "https://dashboard.kamui-platform.com/en/documents/terms-of-use"
+  "termsOfServiceUrl": "https://dashboard.kamui-platform.com/en/documents/terms-of-use",
+  "icon": "./assets/logo.png"
 }
